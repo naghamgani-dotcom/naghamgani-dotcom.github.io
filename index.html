@@ -117,6 +117,7 @@ section{padding-block:80px}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
 .tags span{font-size:12.5px;font-weight:500;border:1px solid var(--line);color:var(--text);padding:4px 10px;border-radius:8px}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+.btn-ghost{color:var(--accent);background:var(--surface);border:1px solid var(--accent)}.btn-ghost:hover{background:var(--accent-soft);transform:translateY(-1px)}
 .proj.wide .split{display:grid;grid-template-columns:1fr 1.1fr}
 .proj.wide .split > *{min-width:0}
 .proj.wide .cover{height:100%;min-height:320px;border-bottom:0;border-right:1px solid var(--line)}
@@ -243,7 +244,7 @@ footer{padding-block:32px;text-align:center;color:var(--muted);font-size:13.5px}
             <button type="button" data-full="safran_mise_en_plan.png"><img src="safran_mise_en_plan.png" alt="Mise en plan de l'outil" loading="lazy"><span>Mise en plan de l'outil</span></button>
             <button type="button" data-full="safran_prototype.jpg"><img src="safran_prototype.jpg" alt="Prototype validé sur écrou" loading="lazy"><span>Prototype validé sur écrou</span></button>
           </div>
-          <figure class="vid"><video controls muted playsinline preload="metadata" src="video_safran.mp4"></video><figcaption>Vidéo du stage chez SAFRAN Electrical &amp; Power</figcaption></figure>
+          <div class="actions"><a class="btn btn-primary btn-sm" href="video_safran.mp4" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5v14l11-7z"/></svg>Vidéo</a></div>
         </div>
       </article>
       <article class="xp">
@@ -284,9 +285,8 @@ footer{padding-block:32px;text-align:center;color:var(--muted);font-size:13.5px}
               <button type="button" data-full="abq_poincon.png"><img src="abq_poincon.png" alt="Géométrie du poinçon" loading="lazy"><span>Poinçon</span></button>
               <button type="button" data-full="abq_probleme.png"><img src="abq_probleme.png" alt="Avant correction" loading="lazy"><span>Avant correction</span></button>
             </div>
-            <figure class="vid"><video controls muted playsinline preload="metadata" src="video_abaqus_pliage.mp4"></video><figcaption>Vidéo de la simulation du pliage en U sous ABAQUS</figcaption></figure>
             <div class="tags"><span>ABAQUS</span><span>Johnson-Cook</span><span>Dynamic Explicit</span><span>Contact</span></div>
-            <div class="actions"><a class="btn btn-primary btn-sm" href="Rapport_ABAQUS_pliage_U.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>Rapport PDF</a></div>
+            <div class="actions"><a class="btn btn-primary btn-sm" href="Rapport_ABAQUS_pliage_U.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>Rapport PDF</a><a class="btn btn-ghost btn-sm" href="video_abaqus_pliage.mp4" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5v14l11-7z"/></svg>Vidéo</a></div>
           </div>
         </div>
       </article>
