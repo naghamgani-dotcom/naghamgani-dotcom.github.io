@@ -114,6 +114,7 @@ section{padding-block:80px}
 .kpis{display:flex;gap:28px;flex-wrap:wrap;padding:12px 0;border-block:1px solid var(--line)}
 .kpis b{display:block;font-family:var(--display);font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
 .kpis span{font-size:12px;color:var(--muted)}
+.steps{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:15px}.steps b{color:var(--ink);font-weight:600}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
 .tags span{font-size:12.5px;font-weight:500;border:1px solid var(--line);color:var(--text);padding:4px 10px;border-radius:8px}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
@@ -418,8 +419,15 @@ footer{border-top:1px solid var(--line)}
         <div class="body">
           <div class="meta"><span class="pill">Simulation</span><span>2026</span></div>
           <h3>Simulation CFD-structurelle</h3>
-          <p>Couplage Fluent et Static Structural pour étudier la déflexion d'une plaque sous écoulement d'air.</p>
-          <div class="tags"><span>ANSYS Fluent</span><span>Static Structural</span></div>
+          <p>Étude d'interaction fluide-structure (couplage unidirectionnel) sous ANSYS Workbench : l'écoulement d'air calculé sous Fluent exerce une pression sur une plaque, puis cette charge est transférée vers Static Structural pour évaluer la déflexion et les contraintes de la plaque.</p>
+          <ul class="steps">
+            <li><b>Géométrie et domaine fluide</b> : modélisation de la plaque et du volume d'air qui l'entoure.</li>
+            <li><b>Maillage</b> : maillage du domaine fluide et de la plaque.</li>
+            <li><b>Calcul CFD (Fluent)</b> : conditions aux limites d'entrée et de sortie, résolution de l'écoulement et du champ de pression sur la plaque.</li>
+            <li><b>Transfert de charge</b> : import des pressions Fluent dans Static Structural.</li>
+            <li><b>Calcul structurel</b> : encastrement, calcul de la déformée et des contraintes de Von Mises.</li>
+          </ul>
+          <div class="tags"><span>ANSYS Workbench</span><span>ANSYS Fluent</span><span>Static Structural</span><span>Interaction fluide-structure</span><span>Maillage</span></div>
         </div>
       </article>
     </div>
