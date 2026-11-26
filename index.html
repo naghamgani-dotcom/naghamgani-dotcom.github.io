@@ -7,7 +7,7 @@
 <title>Nagham Gani Portfolio</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap">
 <style>
 /* Layout: sticky top navigation, split hero with portrait, project cards with cover image + action buttons, lightbox for figures */
 :root{
@@ -166,6 +166,69 @@ footer{padding-block:32px;text-align:center;color:var(--muted);font-size:13.5px}
   section{padding-block:56px}
   .portrait .tag{left:10px}
 }
+/* Clarity-style theme: deep navy, violet accent, floating pill nav, centered section heads */
+html:root:root{
+  --bg:#060818; --surface:#10132b; --ink:#ffffff; --text:#c7c9df; --muted:#9396b5; --line:rgba(255,255,255,.08);
+  --accent:#5b4fe8; --accent-2:#7b70f5; --accent-soft:rgba(91,79,232,.16); --hero:#060818; --hero-ink:#ffffff; --hero-muted:#c7c9df; --hero-accent:#8f86ff; --ov:255,255,255;
+  --display:"Quicksand","Segoe UI",Arial,sans-serif; --body:"Roboto","Segoe UI",Arial,sans-serif;
+  --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.35); color-scheme:dark;
+}
+body{background:var(--bg)}
+h1,h2,h3,h4{font-weight:700}
+body::before{background:var(--bg)}
+nav.top{background:transparent;border:0;top:calc(14px + env(safe-area-inset-top,0px));padding-inline:16px}
+nav.top .wrap{max-width:1320px;background:rgba(22,24,54,.82);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.06);border-radius:999px;height:62px;padding-inline:28px}
+.logo{font-size:22px;font-weight:600}
+.logo span{color:var(--ink)}
+.links a{color:#c7c9df;font-size:15px;border-radius:0;padding:8px 12px;position:relative}
+.links a::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;height:2px;border-radius:2px;background:var(--accent);transform:scaleX(0);transition:transform .2s}
+.links a:hover{background:none;color:#fff}
+.links a:hover::after{transform:scaleX(1)}
+.btn{border-radius:999px;font-weight:500}
+.btn-primary,.btn-light{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-primary:hover,.btn-light:hover{background:var(--accent-2);border-color:var(--accent-2);color:#fff}
+.btn-outline-light,.btn-ghost{background:transparent;color:#fff;border:1.5px solid var(--accent)}
+.btn-outline-light:hover,.btn-ghost:hover{background:var(--accent);color:#fff}
+.hero{position:relative;overflow:hidden;background:radial-gradient(600px 400px at 85% 30%,rgba(91,79,232,.28),transparent 70%),radial-gradient(500px 360px at 10% 90%,rgba(143,134,255,.12),transparent 70%),var(--bg)}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;border:1px solid rgba(143,134,255,.18);pointer-events:none}
+.hero .wrap{padding-block:150px 90px}
+.hero h1{font-size:clamp(38px,5vw,60px)}
+.hero h1 span{color:var(--hero-accent)}
+.badge{background:rgba(91,79,232,.14);border-color:rgba(143,134,255,.3)}
+.portrait img{border:1px solid rgba(143,134,255,.35);box-shadow:0 0 0 8px rgba(91,79,232,.12),0 0 60px rgba(91,79,232,.45)}
+.stats{background:transparent;border:0;gap:28px}
+.stats div{background:transparent;padding:0}
+.stats b{color:var(--hero-accent);font-size:30px}
+.stats span{color:#c7c9df;font-size:13.5px}
+.sec-head{flex-direction:column;align-items:center;text-align:center;margin-bottom:44px}
+.sec-head h2{font-size:clamp(30px,3.6vw,42px)}
+.sec-head p{max-width:60ch}
+.eyebrow{color:var(--hero-accent)}
+.facts,.xp,.proj,.box{background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+.xp,.proj,.box{transition:transform .25s,box-shadow .25s,border-color .25s}
+.xp:hover,.proj:hover,.box:hover{transform:translateY(-4px);border-color:rgba(143,134,255,.35);box-shadow:0 16px 40px rgba(0,0,0,.45),0 0 30px rgba(91,79,232,.18)}
+.xp .when{color:var(--hero-accent)}
+.cover{border-bottom:1px solid var(--line)}
+.gal button{border:1px solid var(--line);background:#fff}
+.gal span{background:#161a3a;color:#c7c9df;border-top:0}
+.meta .pill,.chips span{background:var(--accent-soft);color:#b3adff}
+.tags span{border-color:rgba(143,134,255,.25);color:#c7c9df}
+.kpis{border-color:var(--line)}
+.kpis b{color:var(--hero-accent)}
+.contact{background:linear-gradient(135deg,#1a1c48,#10132b 60%);border:1px solid rgba(143,134,255,.22)}
+.cl > div{background:rgba(255,255,255,.04)}
+footer{border-top:1px solid var(--line)}
+.filters{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:-16px 0 32px}
+.filters button{cursor:pointer;font:inherit;font-size:14px;font-weight:500;color:#c7c9df;background:#141838;border:1px solid var(--line);padding:9px 18px;border-radius:999px;transition:background .2s,color .2s}
+.filters button:hover{color:#fff}
+.filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.is-hidden{display:none!important}
+.totop{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;width:44px;height:44px;border-radius:50%;border:0;background:var(--accent);color:#fff;font-size:20px;cursor:pointer;box-shadow:0 8px 20px rgba(91,79,232,.45);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;transform:translateY(8px)}
+.totop.on{opacity:1;pointer-events:auto;transform:none}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (max-width:900px){nav.top .wrap{padding-inline:20px}.hero .wrap{padding-block:120px 64px}}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 
@@ -244,7 +307,7 @@ footer{padding-block:32px;text-align:center;color:var(--muted);font-size:13.5px}
             <button type="button" data-full="safran_mise_en_plan.png"><img src="safran_mise_en_plan.png" alt="Mise en plan de l'outil" loading="lazy"><span>Mise en plan de l'outil</span></button>
             <button type="button" data-full="safran_prototype.jpg"><img src="safran_prototype.jpg" alt="Prototype validé sur écrou" loading="lazy"><span>Prototype validé sur écrou</span></button>
           </div>
-          <div class="actions"><a class="btn btn-primary btn-sm" href="video_safran.mp4" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5v14l11-7z"/></svg>Vidéo</a></div>
+          <figure class="vid"><video controls muted playsinline preload="metadata" src="video_safran.mp4"></video><figcaption>Vidéo du stage chez SAFRAN Electrical &amp; Power</figcaption></figure>
         </div>
       </article>
       <article class="xp">
@@ -285,8 +348,9 @@ footer{padding-block:32px;text-align:center;color:var(--muted);font-size:13.5px}
               <button type="button" data-full="abq_poincon.png"><img src="abq_poincon.png" alt="Géométrie du poinçon" loading="lazy"><span>Poinçon</span></button>
               <button type="button" data-full="abq_probleme.png"><img src="abq_probleme.png" alt="Avant correction" loading="lazy"><span>Avant correction</span></button>
             </div>
+            <figure class="vid"><video controls muted playsinline preload="metadata" src="video_abaqus_pliage.mp4"></video><figcaption>Vidéo de la simulation du pliage en U sous ABAQUS</figcaption></figure>
             <div class="tags"><span>ABAQUS</span><span>Johnson-Cook</span><span>Dynamic Explicit</span><span>Contact</span></div>
-            <div class="actions"><a class="btn btn-primary btn-sm" href="Rapport_ABAQUS_pliage_U.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>Rapport PDF</a><a class="btn btn-ghost btn-sm" href="video_abaqus_pliage.mp4" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 5v14l11-7z"/></svg>Vidéo</a></div>
+            <div class="actions"><a class="btn btn-primary btn-sm" href="Rapport_ABAQUS_pliage_U.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>Rapport PDF</a></div>
           </div>
         </div>
       </article>
@@ -416,5 +480,27 @@ footer{padding-block:32px;text-align:center;color:var(--muted);font-size:13.5px}
 })();
 </script>
 
+<script>
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('.projects > .proj, .mini > .proj'));
+  var first=document.querySelector('.projects');
+  if(first&&cards.length){
+    var cats=[];cards.forEach(function(c){var p=c.querySelector('.meta .pill');var k=p?p.textContent.trim():'';c.dataset.cat=k;if(k&&cats.indexOf(k)<0)cats.push(k);});
+    var bar=document.createElement('div');bar.className='filters';bar.setAttribute('role','group');bar.setAttribute('aria-label','Filtrer les projets');
+    ['Tous'].concat(cats).forEach(function(k,i){var b=document.createElement('button');b.type='button';b.textContent=k;b.setAttribute('aria-pressed',i===0?'true':'false');
+      b.addEventListener('click',function(){[].forEach.call(bar.children,function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');
+        cards.forEach(function(c){c.classList.toggle('is-hidden',!(i===0||c.dataset.cat===k));});});bar.appendChild(b);});
+    first.parentNode.insertBefore(bar,first);
+  }
+  var t=document.createElement('button');t.className='totop';t.type='button';t.setAttribute('aria-label','Revenir en haut');t.textContent='↑';
+  t.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});document.body.appendChild(t);
+  window.addEventListener('scroll',function(){t.classList.toggle('on',window.scrollY>500)},{passive:true});
+  if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var els=document.querySelectorAll('.sec-head,.xp,.proj,.box,.facts,.about > *,.contact');
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.08});
+    [].forEach.call(els,function(el){el.classList.add('reveal');io.observe(el);});
+  }
+})();
+</script>
 </body>
 </html>
