@@ -97,6 +97,7 @@ section{padding-block:80px}
 .gal button{cursor:zoom-in;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;display:flex;flex-direction:column;padding:0;font:inherit;text-align:left}
 .gal img{width:100%;height:110px;object-fit:contain;background:#fff;display:block;transition:transform .25s}
 .gal button:hover img{transform:scale(1.04)}
+.vid{margin-top:16px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#000}.vid video{display:block;width:100%;max-height:420px;background:#000}.vid figcaption{font-size:12px;color:var(--muted);padding:6px 10px;background:var(--surface)}
 .gal span{font-size:12px;color:var(--muted);padding:6px 9px;border-top:1px solid var(--line);background:var(--surface)}
 
 .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
@@ -242,6 +243,7 @@ footer{padding-block:32px;text-align:center;color:var(--muted);font-size:13.5px}
             <button type="button" data-full="safran_mise_en_plan.png"><img src="safran_mise_en_plan.png" alt="Mise en plan de l'outil" loading="lazy"><span>Mise en plan de l'outil</span></button>
             <button type="button" data-full="safran_prototype.jpg"><img src="safran_prototype.jpg" alt="Prototype validé sur écrou" loading="lazy"><span>Prototype validé sur écrou</span></button>
           </div>
+          <figure class="vid"><video controls muted playsinline preload="metadata" src="video_safran.mp4"></video><figcaption>Vidéo du stage chez SAFRAN Electrical &amp; Power</figcaption></figure>
         </div>
       </article>
       <article class="xp">
@@ -282,6 +284,7 @@ footer{padding-block:32px;text-align:center;color:var(--muted);font-size:13.5px}
               <button type="button" data-full="abq_poincon.png"><img src="abq_poincon.png" alt="Géométrie du poinçon" loading="lazy"><span>Poinçon</span></button>
               <button type="button" data-full="abq_probleme.png"><img src="abq_probleme.png" alt="Avant correction" loading="lazy"><span>Avant correction</span></button>
             </div>
+            <figure class="vid"><video controls muted playsinline preload="metadata" src="video_abaqus_pliage.mp4"></video><figcaption>Vidéo de la simulation du pliage en U sous ABAQUS</figcaption></figure>
             <div class="tags"><span>ABAQUS</span><span>Johnson-Cook</span><span>Dynamic Explicit</span><span>Contact</span></div>
             <div class="actions"><a class="btn btn-primary btn-sm" href="Rapport_ABAQUS_pliage_U.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>Rapport PDF</a></div>
           </div>
