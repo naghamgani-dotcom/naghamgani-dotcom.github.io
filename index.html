@@ -12,17 +12,17 @@
 /* Layout: sticky top navigation, split hero with portrait, project cards with cover image + action buttons, lightbox for figures */
 :root{
   --bg:#faf6f3; --surface:#ffffff; --ink:#2e1a14; --text:#4a3a34; --muted:#7a6a63; --line:#eadfd8;
-  --accent:#a8231c; --accent-2:#7d1913; --accent-soft:#f8e6e3; --hero:#3a2219; --hero-ink:#faf3ee; --hero-muted:#d2bdb2; --hero-accent:#e4825f;
+  --accent:#c0574a; --accent-2:#9c4136; --accent-soft:#fbece7; --hero:#f5e4db; --hero-ink:#4a2c22; --hero-muted:#7a5d52; --hero-accent:#c0574a; --ov:74,44,34;
   --display:"Sora","Segoe UI",Arial,sans-serif; --body:"Inter","Segoe UI",Arial,sans-serif;
   --radius:14px; --shadow:0 1px 2px rgba(15,27,45,.06),0 8px 24px rgba(15,27,45,.06);
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#150f0d; --surface:#1f1613; --ink:#f5ede9; --text:#d4c6c0; --muted:#a3918a; --line:#3a2a24;
-  --accent:#e5675c; --accent-2:#f09a90; --accent-soft:#3a1d19; --hero:#100b09; --hero-ink:#faf3ee; --hero-muted:#b9a59c; --hero-accent:#e4825f;
+  --accent:#e5675c; --accent-2:#f09a90; --accent-soft:#3a1d19; --hero:#2a1d19; --hero-ink:#faf3ee; --hero-muted:#c9b4ab; --hero-accent:#eba08a; --ov:255,255,255;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#150f0d; --surface:#1f1613; --ink:#f5ede9; --text:#d4c6c0; --muted:#a3918a; --line:#3a2a24;
-  --accent:#e5675c; --accent-2:#f09a90; --accent-soft:#3a1d19; --hero:#100b09; --hero-ink:#faf3ee; --hero-muted:#b9a59c; --hero-accent:#e4825f;
+  --accent:#e5675c; --accent-2:#f09a90; --accent-soft:#3a1d19; --hero:#2a1d19; --hero-ink:#faf3ee; --hero-muted:#c9b4ab; --hero-accent:#eba08a; --ov:255,255,255;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -33,13 +33,13 @@ a{color:var(--accent)}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
 
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--hero)}
-nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--hero);border-bottom:1px solid rgba(255,255,255,.08)}
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--hero);border-bottom:1px solid rgba(var(--ov),.08)}
 nav.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
 .logo{font-family:var(--display);font-weight:700;color:var(--hero-ink);text-decoration:none;font-size:18px}
 .logo span{color:var(--hero-accent)}
 .links{display:flex;gap:4px;flex-wrap:wrap}
 .links a{color:var(--hero-muted);text-decoration:none;font-size:14px;font-weight:500;padding:8px 12px;border-radius:8px}
-.links a:hover{color:var(--hero-ink);background:rgba(255,255,255,.08)}
+.links a:hover{color:var(--hero-ink);background:rgba(var(--ov),.08)}
 
 .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-weight:600;font-size:14.5px;padding:12px 18px;border-radius:10px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .15s,background .15s,border-color .15s,color .15s;line-height:1}
 .btn svg{width:17px;height:17px;flex:none}
@@ -47,24 +47,24 @@ nav.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:
 .btn-primary:hover{background:var(--accent-2);transform:translateY(-1px)}
 .btn-light{background:#fff;color:#3a2219}
 .btn-light:hover{transform:translateY(-1px);background:#e8eefc}
-.btn-outline-light{color:var(--hero-ink);border-color:rgba(255,255,255,.35)}
-.btn-outline-light:hover{background:rgba(255,255,255,.08);transform:translateY(-1px)}
+.btn-outline-light{color:var(--hero-ink);border-color:rgba(var(--ov),.35)}
+.btn-outline-light:hover{background:rgba(var(--ov),.08);transform:translateY(-1px)}
 .btn-sm{padding:10px 14px;font-size:13.5px}
 
 .hero{background:var(--hero);color:var(--hero-muted)}
 .hero .wrap{display:grid;grid-template-columns:1fr 240px;gap:56px;align-items:center;padding-block:72px 80px}
 .hero .wrap > *{min-width:0}
-.badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--hero-ink);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:6px 12px;border-radius:999px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--hero-ink);background:rgba(var(--ov),.08);border:1px solid rgba(var(--ov),.14);padding:6px 12px;border-radius:999px}
 .badge i{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.18)}
 .hero h1{color:var(--hero-ink);font-size:clamp(36px,5vw,58px);font-weight:800;letter-spacing:-.02em;margin:20px 0 12px}
 .hero h1 span{color:var(--hero-accent);font-size:.62em;display:block;margin-top:8px;font-weight:700}
 .hero .lead{font-size:18px;max-width:none;margin:0}
 .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
 .portrait{position:relative;width:220px;max-width:100%;justify-self:center}
-.portrait img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:4px;display:block;border:1px solid rgba(255,255,255,.12)}
+.portrait img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:4px;display:block;border:1px solid rgba(var(--ov),.12)}
 .portrait .tag{position:absolute;left:-14px;bottom:24px;background:var(--surface);color:var(--ink);border-radius:12px;padding:10px 14px;box-shadow:var(--shadow);font-size:13px;font-weight:600;display:flex;flex-direction:column}
 .portrait .tag span{color:var(--muted);font-weight:500;font-size:12px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;margin-top:40px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(var(--ov),.1);border:1px solid rgba(var(--ov),.1);border-radius:14px;overflow:hidden;margin-top:40px}
 .stats div{background:var(--hero);padding:16px 18px}
 .stats b{display:block;font-family:var(--display);font-size:24px;color:var(--hero-ink)}
 .stats span{font-size:12.5px}
@@ -135,11 +135,11 @@ section{padding-block:80px}
 .contact h2{color:var(--hero-ink);font-size:clamp(26px,3vw,34px);margin:8px 0 12px}
 .contact .eyebrow{color:var(--hero-accent)}
 .cl{display:flex;flex-direction:column;gap:10px}
-.cl > div{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 14px}
+.cl > div{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(var(--ov),.06);border:1px solid rgba(var(--ov),.1);border-radius:12px;padding:12px 14px}
 .cl .v{color:var(--hero-ink);font-weight:500;overflow-wrap:anywhere}
 .cl small{display:block;font-size:12px;color:var(--hero-muted)}
-.copy{cursor:pointer;font:inherit;font-size:12.5px;font-weight:600;color:var(--hero-ink);background:transparent;border:1px solid rgba(255,255,255,.25);padding:6px 10px;border-radius:8px;flex:none}
-.copy:hover{background:rgba(255,255,255,.1)}
+.copy{cursor:pointer;font:inherit;font-size:12.5px;font-weight:600;color:var(--hero-ink);background:transparent;border:1px solid rgba(var(--ov),.25);padding:6px 10px;border-radius:8px;flex:none}
+.copy:hover{background:rgba(var(--ov),.1)}
 footer{padding-block:32px;text-align:center;color:var(--muted);font-size:13.5px}
 
 .lb{position:fixed;inset:0;z-index:50;background:rgba(5,10,18,.88);display:flex;align-items:center;justify-content:center;padding:24px;flex-direction:column;gap:12px}
@@ -197,9 +197,7 @@ footer{padding-block:32px;text-align:center;color:var(--muted);font-size:13.5px}
       </div>
     </div>
     <div class="portrait">
-      <img src="photo.jpg" alt="Portrait de Nagham Gani" width="640" height="640">
-      <div class="tag">ENIT · Tunis<span>Diplôme d'ingénieur 2024 – 2027</span></div>
-    </div>
+      <img src="photo.jpg" alt="Portrait de Nagham Gani" width="640" height="640"></div>
   </div>
 </header>
 
@@ -240,6 +238,15 @@ footer{padding-block:32px;text-align:center;color:var(--muted);font-size:13.5px}
             <button type="button" data-full="safran_ecrous.png"><img src="safran_ecrous.png" alt="Écrous moletés et outillage existant" loading="lazy"><span>Écrous et outillage existant</span></button>
             <button type="button" data-full="safran_analyse.png"><img src="safran_analyse.png" alt="Analyse de l'existant" loading="lazy"><span>Analyse de l'existant</span></button>
             <button type="button" data-full="safran_outil_catia.jpg"><img src="safran_outil_catia.jpg" alt="Outil de serrage conçu sous CATIA V5" loading="lazy"><span>Outil conçu sous CATIA V5</span></button>
+            <button type="button" data-full="safran_ecrou_molete.jpg"><img src="safran_ecrou_molete.jpg" alt="Écrou moleté à serrer" loading="lazy"><span>Écrou moleté à serrer</span></button>
+            <button type="button" data-full="safran_ishikawa.png"><img src="safran_ishikawa.png" alt="Diagramme d'Ishikawa" loading="lazy"><span>Diagramme d'Ishikawa</span></button>
+            <button type="button" data-full="safran_modeles_3d.jpg"><img src="safran_modeles_3d.jpg" alt="Modèles 3D sous CATIA V5" loading="lazy"><span>Modèles 3D sous CATIA V5</span></button>
+            <button type="button" data-full="safran_assemblage.jpg"><img src="safran_assemblage.jpg" alt="Assemblage de l'outil" loading="lazy"><span>Assemblage de l'outil</span></button>
+            <button type="button" data-full="safran_mise_en_plan.png"><img src="safran_mise_en_plan.png" alt="Mise en plan de l'outil" loading="lazy"><span>Mise en plan de l'outil</span></button>
+            <button type="button" data-full="safran_plan_detail.png"><img src="safran_plan_detail.png" alt="Plan de détail" loading="lazy"><span>Plan de détail</span></button>
+            <button type="button" data-full="safran_prototype.jpg"><img src="safran_prototype.jpg" alt="Prototype validé sur écrou" loading="lazy"><span>Prototype validé sur écrou</span></button>
+            <button type="button" data-full="safran_pareto.png"><img src="safran_pareto.png" alt="Analyse de Pareto des équipements" loading="lazy"><span>Analyse de Pareto des équipements</span></button>
+            <button type="button" data-full="safran_grille_score.png"><img src="safran_grille_score.png" alt="Grille multicritère de la roadmap" loading="lazy"><span>Grille multicritère de la roadmap</span></button>
           </div>
         </div>
       </article>
