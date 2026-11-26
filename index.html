@@ -7,320 +7,410 @@
 <title>Nagham Gani Portfolio</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Open+Sans:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
 <style>
-/* Layout: editorial two-column — fixed sidebar (menu + contact) on the left, long scrolling page on the right, sections divided by thin rules with a coral underline accent */
+/* Layout: sticky top navigation, split hero with portrait, project cards with cover image + action buttons, lightbox for figures */
 :root{
-  --bg:#ffffff; --side:#f5f6f7; --ink:#3d4449; --head:#2f363b; --muted:#7f888f; --line:#dfe3e6;
-  --accent:#e2574c; --accent-ink:#c9443a; --chip:#fbe9e7;
-  --display:"Roboto Slab",Georgia,serif; --body:"Open Sans","Segoe UI",Arial,sans-serif;
+  --bg:#f7f8fb; --surface:#ffffff; --ink:#0f1b2d; --text:#3b4658; --muted:#6b7689; --line:#e3e7ef;
+  --accent:#2453d6; --accent-2:#163a9e; --accent-soft:#e8eefc; --hero:#0f1b2d; --hero-ink:#f2f5fb; --hero-muted:#a9b4c7; --hero-accent:#8fb0ff;
+  --display:"Sora","Segoe UI",Arial,sans-serif; --body:"Inter","Segoe UI",Arial,sans-serif;
+  --radius:14px; --shadow:0 1px 2px rgba(15,27,45,.06),0 8px 24px rgba(15,27,45,.06);
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#16191c; --side:#1d2125; --ink:#c9cfd4; --head:#eef1f3; --muted:#8d969d; --line:#2e3439;
-  --accent:#f0766b; --accent-ink:#f28f86; --chip:#3a2422; color-scheme:dark}}
+  --bg:#0b111b; --surface:#121a27; --ink:#eef2f8; --text:#c3ccda; --muted:#8e9ab0; --line:#223047;
+  --accent:#6b93ff; --accent-2:#9db6ff; --accent-soft:#1a2742; --hero:#080d15; --hero-ink:#f2f5fb; --hero-muted:#9aa7bd; --hero-accent:#8fb0ff;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#16191c; --side:#1d2125; --ink:#c9cfd4; --head:#eef1f3; --muted:#8d969d; --line:#2e3439;
-  --accent:#f0766b; --accent-ink:#f28f86; --chip:#3a2422; color-scheme:dark}
+  --bg:#0b111b; --surface:#121a27; --ink:#eef2f8; --text:#c3ccda; --muted:#8e9ab0; --line:#223047;
+  --accent:#6b93ff; --accent-2:#9db6ff; --accent-soft:#1a2742; --hero:#080d15; --hero-ink:#f2f5fb; --hero-muted:#9aa7bd; --hero-accent:#8fb0ff;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.7}
-h1,h2,h3,h4{font-family:var(--display);color:var(--head);margin:0;line-height:1.25;text-wrap:balance}
-a{color:var(--accent-ink)}
-a:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.65;margin:0}
+h1,h2,h3,h4{font-family:var(--display);color:var(--ink);margin:0;line-height:1.2;text-wrap:balance}
+a{color:var(--accent)}
+.wrap{max-width:1140px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
 
-.layout{display:grid;grid-template-columns:300px 1fr;min-height:100vh}
-aside.side{background:var(--side);border-right:1px solid var(--line);
-  padding-block:32px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:24px;
-  position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column;gap:28px}
-.side h3{font-size:20px;display:inline-block;padding-bottom:8px;border-bottom:3px solid var(--accent)}
-.side nav ul{list-style:none;margin:14px 0 0;padding:0}
-.side nav li{border-top:1px solid var(--line)}
-.side nav li:first-child{border-top:0}
-.side nav a{display:flex;gap:12px;align-items:center;padding:11px 2px;color:var(--head);text-decoration:none;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
-.side nav a:hover{color:var(--accent-ink)}
-.side nav svg,.contact svg{width:16px;height:16px;flex:none;fill:var(--accent)}
-.side hr{border:0;border-top:1px solid var(--line);margin:0}
-.side p{margin:14px 0 0;font-size:14px;color:var(--muted)}
-.contact{list-style:none;margin:14px 0 0;padding:0}
-.contact li{display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line);font-size:14px;min-width:0}
-.contact li:first-child{border-top:0}
-.contact span{overflow-wrap:anywhere}
-.side .foot{font-size:12.5px;color:var(--muted)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--hero)}
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--hero);border-bottom:1px solid rgba(255,255,255,.08)}
+nav.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.logo{font-family:var(--display);font-weight:700;color:var(--hero-ink);text-decoration:none;font-size:18px}
+.logo span{color:var(--hero-accent)}
+.links{display:flex;gap:4px;flex-wrap:wrap}
+.links a{color:var(--hero-muted);text-decoration:none;font-size:14px;font-weight:500;padding:8px 12px;border-radius:8px}
+.links a:hover{color:var(--hero-ink);background:rgba(255,255,255,.08)}
 
-main{min-width:0;padding-block:28px 60px;padding-left:48px;padding-right:max(48px,env(safe-area-inset-right,0px))}
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:16px;border-bottom:4px solid var(--accent);flex-wrap:wrap}
-.topbar .brand{font-family:var(--display);font-weight:700;color:var(--head)}
-.topbar .brand span{font-weight:400;color:var(--muted)}
-.topbar a{color:var(--muted);font-size:14px;text-decoration:none}
-.topbar a:hover{color:var(--accent-ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-weight:600;font-size:14.5px;padding:12px 18px;border-radius:10px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .15s,background .15s,border-color .15s,color .15s;line-height:1}
+.btn svg{width:17px;height:17px;flex:none}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-2);transform:translateY(-1px)}
+.btn-light{background:#fff;color:#0f1b2d}
+.btn-light:hover{transform:translateY(-1px);background:#e8eefc}
+.btn-outline-light{color:var(--hero-ink);border-color:rgba(255,255,255,.35)}
+.btn-outline-light:hover{background:rgba(255,255,255,.08);transform:translateY(-1px)}
+.btn-sm{padding:10px 14px;font-size:13.5px}
 
-.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;padding:56px 0;border-bottom:1px solid var(--line);align-items:center}
-.hero > *{min-width:0}
-.hero h1{font-size:clamp(34px,4.6vw,54px)}
-.hero .meta{margin:20px 0 0;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.hero p{max-width:56ch}
-.hero b{color:var(--head)}
-.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
-.btn{display:inline-block;font-family:var(--display);font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  padding:11px 22px;border:2px solid var(--accent);color:var(--accent-ink);text-decoration:none;border-radius:4px;background:transparent}
-.btn.solid{background:var(--accent);color:#fff}
-.btn:hover{background:var(--chip)}
-.btn.solid:hover{background:var(--accent-ink)}
-.photo{aspect-ratio:4/5;max-width:100%;border-radius:6px;background:linear-gradient(160deg,var(--side),var(--chip));border:1px solid var(--line);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted);text-align:center;padding:20px}
-.photo-img{width:100%;max-width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:6px;border:1px solid var(--line);display:block}
+.hero{background:var(--hero);color:var(--hero-muted)}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .85fr;gap:56px;align-items:center;padding-block:72px 80px}
+.hero .wrap > *{min-width:0}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--hero-ink);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:6px 12px;border-radius:999px}
+.badge i{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.18)}
+.hero h1{color:var(--hero-ink);font-size:clamp(36px,5vw,58px);font-weight:800;letter-spacing:-.02em;margin:20px 0 12px}
+.hero h1 span{color:var(--hero-accent);font-size:.62em;display:block;margin-top:8px;font-weight:700}
+.hero .lead{font-size:18px;max-width:54ch;margin:0}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.portrait{position:relative;max-width:100%}
+.portrait img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:22px;display:block;border:1px solid rgba(255,255,255,.12)}
+.portrait .tag{position:absolute;left:-14px;bottom:24px;background:var(--surface);color:var(--ink);border-radius:12px;padding:10px 14px;box-shadow:var(--shadow);font-size:13px;font-weight:600;display:flex;flex-direction:column}
+.portrait .tag span{color:var(--muted);font-weight:500;font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;margin-top:40px}
+.stats div{background:var(--hero);padding:16px 18px}
+.stats b{display:block;font-family:var(--display);font-size:24px;color:var(--hero-ink)}
+.stats span{font-size:12.5px}
 
-section{padding:48px 0;border-bottom:1px solid var(--line)}
-.sh{font-size:28px;display:inline-block;padding-bottom:10px;border-bottom:3px solid var(--accent);margin-bottom:26px}
+section{padding-block:80px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:32px}
+.sec-head h2{font-size:clamp(28px,3.4vw,38px);margin-top:8px}
+.sec-head p{margin:0;max-width:52ch;color:var(--muted)}
 
-.about{display:grid;grid-template-columns:1.4fr 1fr;gap:40px}
+.about{display:grid;grid-template-columns:1.35fr 1fr;gap:40px}
 .about > *{min-width:0}
-.facts{display:flex;flex-direction:column;gap:16px}
-.facts h4{font-size:15px}
-.facts div p{margin:2px 0 0;color:var(--muted);font-size:14.5px}
+.about p{margin:0 0 14px}
+.facts{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:8px 24px;margin:0}
+.facts div{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.facts div:last-child{border-bottom:0}
+.facts dt{font-weight:600;color:var(--ink);font-size:14px}
+.facts dd{margin:0;font-size:14.5px}
 
-.tiles{display:grid;grid-template-columns:1fr 1fr}
-.tile{padding:34px 34px 34px 0;display:flex;flex-direction:column;gap:12px;min-width:0}
-.tile:nth-child(2n){padding-left:34px;padding-right:0;border-left:1px solid var(--line)}
-.tile:nth-child(n+3){border-top:1px solid var(--line)}
-.tile svg{width:34px;height:34px;fill:var(--muted)}
-.tile h3{font-size:20px}
-.tile p{margin:0;color:var(--muted)}
-.tile .btn{align-self:flex-start}
+.tl{display:flex;flex-direction:column;gap:20px}
+.xp{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 28px;display:grid;grid-template-columns:170px 1fr;gap:24px}
+.xp > *{min-width:0}
+.xp .when{font-size:13.5px;font-weight:600;color:var(--accent)}
+.xp .where{font-size:13px;color:var(--muted);margin-top:4px}
+.xp h3{font-size:20px}
+.xp .role{color:var(--muted);margin:2px 0 10px;font-size:15px}
+.xp ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
 
-.tl{display:flex;flex-direction:column;gap:26px}
-.tl-item{display:grid;grid-template-columns:150px 1fr;gap:24px}
-.tl-item > *{min-width:0}
-.when{font-family:var(--display);color:var(--accent-ink);font-size:14px}
-.tl-item h3{font-size:19px}
-.tl-item .org{color:var(--muted);margin:2px 0 8px}
-.tl-item ul{margin:0;padding-left:18px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:16px}
+.gal button{cursor:zoom-in;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;display:flex;flex-direction:column;padding:0;font:inherit;text-align:left}
+.gal img{width:100%;height:110px;object-fit:contain;background:#fff;display:block;transition:transform .25s}
+.gal button:hover img{transform:scale(1.04)}
+.gal span{font-size:12px;color:var(--muted);padding:6px 9px;border-top:1px solid var(--line);background:var(--surface)}
 
-.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
-.card{border:1px solid var(--line);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;min-width:0;background:var(--bg)}
-.card .vis{height:150px;background:var(--side);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center}
-.card .vis canvas,.card .vis svg{max-width:100%;height:100%}
-.card .body{padding:20px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
-.card .yr{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.card h3{font-size:18px}
-.card p{margin:0;font-size:14.5px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
-.chips span{font-size:12px;background:var(--chip);color:var(--accent-ink);padding:3px 9px;border-radius:3px}
-.card.feat{grid-column:1 / -1}
-.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin:6px 0}
-.gal figure{margin:0;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
-.gal img{width:100%;height:150px;object-fit:contain;display:block;background:#fff}
-.gal figcaption{font-size:12.5px;color:var(--muted);padding:6px 10px;border-top:1px solid var(--line);background:var(--bg)}
-.card .btn{align-self:flex-start}
-.card.feat .row{display:grid;grid-template-columns:1fr 1fr}
-.card.feat .row > *{min-width:0}
-.card.feat .vis{height:auto;min-height:240px;border-bottom:0;border-right:1px solid var(--line);padding:14px}
-.kpis{display:flex;gap:24px;flex-wrap:wrap}
-.kpi b{display:block;font-family:var(--display);font-size:22px;color:var(--head);font-variant-numeric:tabular-nums}
-.kpi span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;min-width:0;transition:transform .2s,box-shadow .2s}
+.proj:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(15,27,45,.06),0 16px 36px rgba(15,27,45,.1)}
+.proj.wide{grid-column:1 / -1}
+.cover{background:#fff;border:0;border-bottom:1px solid var(--line);height:230px;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:zoom-in;padding:0;width:100%}
+.cover img{max-width:100%;max-height:100%;object-fit:contain}
+.proj .body{padding:24px 26px 26px;display:flex;flex-direction:column;gap:12px;flex:1}
+.meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:12.5px;color:var(--muted)}
+.meta .pill{background:var(--accent-soft);color:var(--accent);font-weight:600;padding:3px 10px;border-radius:999px}
+.proj h3{font-size:21px}
+.proj p{margin:0}
+.kpis{display:flex;gap:28px;flex-wrap:wrap;padding:12px 0;border-block:1px solid var(--line)}
+.kpis b{display:block;font-family:var(--display);font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
+.kpis span{font-size:12px;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:12.5px;font-weight:500;border:1px solid var(--line);color:var(--text);padding:4px 10px;border-radius:8px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+.proj.wide .split{display:grid;grid-template-columns:1fr 1.1fr}
+.proj.wide .split > *{min-width:0}
+.proj.wide .cover{height:100%;min-height:320px;border-bottom:0;border-right:1px solid var(--line)}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px}
+.mini .proj .body{padding:20px 22px}
+.mini .proj h3{font-size:17px}
 
-.skills{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-.skills > *{min-width:0}
-.sk{display:grid;grid-template-columns:140px 1fr;gap:12px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:14.5px}
-.sk .t{height:6px;background:var(--side);border-radius:3px;position:relative;overflow:hidden}
-.sk .t i{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:3px}
-.kv{display:flex;flex-direction:column;gap:14px}
-.kv h4{font-size:15px}
-.kv p{margin:2px 0 0;color:var(--muted);font-size:14.5px}
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;min-width:0}
+.box h3{font-size:17px;margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:var(--accent-soft);color:var(--accent);font-size:13.5px;font-weight:600;padding:6px 12px;border-radius:8px}
+.box ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:15px}
 
-@media (max-width:980px){
-  .layout{grid-template-columns:1fr}
-  aside.side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding-right:max(20px,env(safe-area-inset-right,0px));padding-left:max(20px,env(safe-area-inset-left,0px))}
-  main{padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.contact{background:var(--hero);color:var(--hero-muted);border-radius:22px;padding:48px;display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center}
+.contact > *{min-width:0}
+.contact h2{color:var(--hero-ink);font-size:clamp(26px,3vw,34px);margin:8px 0 12px}
+.contact .eyebrow{color:var(--hero-accent)}
+.cl{display:flex;flex-direction:column;gap:10px}
+.cl > div{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 14px}
+.cl .v{color:var(--hero-ink);font-weight:500;overflow-wrap:anywhere}
+.cl small{display:block;font-size:12px;color:var(--hero-muted)}
+.copy{cursor:pointer;font:inherit;font-size:12.5px;font-weight:600;color:var(--hero-ink);background:transparent;border:1px solid rgba(255,255,255,.25);padding:6px 10px;border-radius:8px;flex:none}
+.copy:hover{background:rgba(255,255,255,.1)}
+footer{padding-block:32px;text-align:center;color:var(--muted);font-size:13.5px}
+
+.lb{position:fixed;inset:0;z-index:50;background:rgba(5,10,18,.88);display:flex;align-items:center;justify-content:center;padding:24px;flex-direction:column;gap:12px}
+.lb img{max-width:min(1100px,100%);max-height:80vh;border-radius:10px;background:#fff}
+.lb p{color:#e7ecf5;margin:0;font-size:14px}
+.lb button{cursor:pointer;position:absolute;top:calc(16px + env(safe-area-inset-top,0px));right:calc(16px + env(safe-area-inset-right,0px));color:#fff;background:transparent;font:inherit;font-size:15px;font-weight:600;border:1px solid rgba(255,255,255,.35);padding:8px 14px;border-radius:10px}
+
+@media (max-width:900px){
+  .hero .wrap,.about,.contact,.proj.wide .split{grid-template-columns:1fr}
+  .portrait{max-width:380px}
+  .proj.wide .cover{border-right:0;border-bottom:1px solid var(--line);min-height:240px}
+  .projects,.skills,.mini{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .links{display:none}
 }
-@media (max-width:760px){
-  .hero,.about,.skills,.projects,.tiles,.card.feat .row{grid-template-columns:1fr}
-  .tile,.tile:nth-child(2n){padding:26px 0;border-left:0}
-  .tile:nth-child(n+2){border-top:1px solid var(--line)}
-  .card.feat .vis{border-right:0;border-bottom:1px solid var(--line)}
-  .tl-item,.sk{grid-template-columns:1fr;gap:4px}
-  .photo{max-width:320px}
+@media (max-width:620px){
+  .projects,.skills,.mini{grid-template-columns:1fr}
+  .xp{grid-template-columns:1fr;gap:8px}
+  .facts div{grid-template-columns:1fr;gap:2px}
+  .contact{padding:28px 22px}
+  section{padding-block:56px}
+  .portrait .tag{left:10px}
 }
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 
 </head>
 <body>
-<div class="layout">
-<aside class="side">
-  <div>
-    <h3>Menu</h3>
-    <nav aria-label="Menu"><ul>
-      <li><a href="#accueil"><svg viewBox="0 0 24 24"><path d="M12 3 2 12h3v8h6v-6h2v6h6v-8h3z"/></svg>Accueil</a></li>
-      <li><a href="#formation"><svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9zM5 13.2v4L12 21l7-3.8v-4L12 17z"/></svg>Formation</a></li>
-      <li><a href="#experience"><svg viewBox="0 0 24 24"><path d="M10 4h4a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h4V6a2 2 0 0 1 2-2zm0 3h4V6h-4z"/></svg>Expérience</a></li>
-      <li><a href="#projets"><svg viewBox="0 0 24 24"><path d="M19.4 13a7.5 7.5 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7 7 0 0 0-1.7-1L15 3h-4l-.4 2.9a7 7 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.5 7.5 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7 7 0 0 0 1.7 1L11 21h4l.4-2.9a7 7 0 0 0 1.7-1l2.5 1 2-3.5zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z"/></svg>Projets</a></li>
-      <li><a href="#competences"><svg viewBox="0 0 24 24"><path d="m8 17-5-5 5-5 1.4 1.4L5.8 12l3.6 3.6zm8 0-1.4-1.4 3.6-3.6-3.6-3.6L16 7l5 5z"/></svg>Compétences</a></li>
-    </ul></nav>
+<nav class="top" aria-label="Navigation">
+  <div class="wrap">
+    <a class="logo" href="#top">Nagham <span>Gani</span></a>
+    <div class="links"><a href="#apropos">Profil</a><a href="#experience">Expérience</a><a href="#projets">Projets</a><a href="#competences">Compétences</a><a href="#contact">Contact</a></div>
+    <a class="btn btn-sm btn-light" href="CV_Nagham_Gani.pdf" target="_blank" rel="noopener">Mon CV</a>
   </div>
-  <hr>
-  <div>
-    <h3>Me contacter</h3>
-    <p>Je recherche un stage de fin d'études de 6 mois à partir de février 2027. N'hésitez pas à me contacter.</p>
-    <ul class="contact">
-      <li><svg viewBox="0 0 24 24"><path d="M2 5h20v14H2zm10 7.5L4 7v2l8 5 8-5V7z"/></svg><span>nagham.gani@etudiant-enit.utm.tn</span></li>
-      <li><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg><span>+216 29 423 511</span></li>
-      <li><svg viewBox="0 0 24 24"><path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm3.3 6.5H5V18h2.3zM6.2 5.6a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6zM19 13.3c0-2.3-1.2-3.9-3.3-3.9a2.9 2.9 0 0 0-2.5 1.3V9.5H11V18h2.3v-4.2c0-1.1.3-2.2 1.6-2.2s1.4 1.2 1.4 2.3V18H19z"/></svg><a href="https://www.linkedin.com/in/nagham-gani-0576173b5/" target="_blank" rel="noopener">linkedin.com/in/nagham-gani-0576173b5</a></li>
-    </ul>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="badge"><i></i>Disponible pour un PFE de 6 mois · février 2027</span>
+      <h1>Nagham Gani<span>Élève-ingénieure en Génie Mécanique</span></h1>
+      <p class="lead">Vibrations, dynamique des structures et simulation numérique. Je relie la modélisation, le calcul par éléments finis et la validation sur le terrain.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#projets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Voir mes projets</a>
+        <a class="btn btn-outline-light" href="CV_Nagham_Gani.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14"/></svg>Télécharger le CV</a>
+        <a class="btn btn-outline-light" href="Presentation_Nagham_Gani_EN.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Présentation (EN)</a>
+      </div>
+      <div class="stats">
+        <div><b>2</b><span>stages industriels</span></div>
+        <div><b>8</b><span>projets techniques</span></div>
+        <div><b>6</b><span>logiciels d'ingénierie</span></div>
+        <div><b>4</b><span>langues</span></div>
+      </div>
+    </div>
+    <div class="portrait">
+      <img src="photo.jpg" alt="Portrait de Nagham Gani" width="640" height="640">
+      <div class="tag">ENIT · Tunis<span>Diplôme d'ingénieur 2024 – 2027</span></div>
+    </div>
   </div>
-  <hr>
-  <div class="foot">© 2026 · Nagham Gani · Génie Mécanique, ENIT</div>
-</aside>
+</header>
 
 <main>
-  <div class="topbar">
-    <div class="brand">Nagham Gani <span>· Portfolio en Génie Mécanique</span></div>
-    <a href="https://www.linkedin.com/in/nagham-gani-0576173b5/" target="_blank" rel="noopener">LinkedIn ↗</a>
-  </div>
-
-  <div class="hero" id="accueil">
-    <div>
-      <h1>Bonjour, je suis Nagham Gani<br>Élève-ingénieure en Génie Mécanique</h1>
-      <div class="meta">ENIT · Tunis, Tunisie</div>
-      <p>Passionnée par l'<b>analyse vibratoire</b>, la <b>dynamique des structures</b>, la <b>simulation numérique</b> et la <b>conception mécanique</b>. Rigoureuse et curieuse, je recherche un stage de fin d'études de 6 mois à partir de février 2027 pour contribuer à des projets d'ingénierie concrets.</p>
-      <div class="btns"><a class="btn solid" href="CV_Nagham_Gani.pdf" target="_blank" rel="noopener">Ouvrir le CV</a><a class="btn" href="#projets">Voir les projets</a></div>
-    </div>
-    <img class="photo-img" src="photo.jpg" alt="Photo de Nagham Gani" width="640" height="640">
-  </div>
-
-  <section id="apropos">
-    <h2 class="sh">À propos de moi</h2>
+<section id="apropos">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Profil</div><h2>À propos de moi</h2></div></div>
     <div class="about">
       <div>
-        <p style="margin-top:0">Je suis en dernière année du cycle ingénieur en Génie Mécanique à l'École Nationale d'Ingénieurs de Tunis (ENIT). Mes projets m'ont permis de travailler sur toute la chaîne : modélisation et calcul vibratoire, simulation par éléments finis et CFD, conception CAO, puis validation en atelier.</p>
-        <p>En stage chez SAFRAN Electrical &amp; Power, j'ai conçu et validé un outillage de serrage en conditions réelles. Chez COFAT, j'ai réalisé une analyse vibratoire sur site qui a permis de diagnostiquer un désalignement. Mon objectif : un PFE en vibrations, dynamique des structures ou simulation numérique.</p>
+        <p>Je suis en dernière année du cycle ingénieur en Génie Mécanique à l'École Nationale d'Ingénieurs de Tunis (ENIT). Mes projets couvrent toute la chaîne : modélisation et calcul vibratoire, simulation par éléments finis, conception CAO, puis validation en atelier.</p>
+        <p>Chez SAFRAN Electrical &amp; Power, j'ai conçu et validé un outillage de serrage en conditions réelles. Chez COFAT, j'ai mené une analyse vibratoire sur site qui a permis de diagnostiquer un désalignement. Je recherche un stage de fin d'études en vibrations, dynamique des structures ou simulation numérique.</p>
       </div>
-      <div class="facts">
-        <div><h4>Localisation</h4><p>Tunis, Tunisie</p></div>
-        <div><h4>Langues</h4><p>Arabe C1 · Français B2 · Anglais B2 · Allemand A1</p></div>
-        <div><h4>Diplôme en cours</h4><p>Diplôme d'ingénieur en Génie Mécanique, ENIT (2024 – 2027)</p></div>
-        <div><h4>Disponibilité</h4><p>PFE de 6 mois à partir de février 2027</p></div>
-      </div>
+      <dl class="facts">
+        <div><dt>Formation</dt><dd>Diplôme d'ingénieur en Génie Mécanique, ENIT (2024 – 2027)</dd></div>
+        <div><dt>Prépa</dt><dd>Cycle préparatoire Physique-Chimie, IPEIN (2022 – 2024)</dd></div>
+        <div><dt>Langues</dt><dd>Arabe C1 · Français B2 · Anglais B2 · Allemand A1</dd></div>
+        <div><dt>Localisation</dt><dd>Tunis, Tunisie · mobile en France et à l'international</dd></div>
+      </dl>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section style="padding-top:20px">
-    <div class="tiles">
-      <div class="tile"><svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9zM5 13.2v4L12 21l7-3.8v-4L12 17z"/></svg><h3>Formation</h3><p>Diplôme d'ingénieur ENIT et cycle préparatoire Physique-Chimie à l'IPEIN.</p><a class="btn" href="#formation">Voir la formation</a></div>
-      <div class="tile"><svg viewBox="0 0 24 24"><path d="M10 4h4a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h4V6a2 2 0 0 1 2-2zm0 3h4V6h-4z"/></svg><h3>Expérience</h3><p>Stages chez SAFRAN et COFAT, enseignement des langues et des mathématiques.</p><a class="btn" href="#experience">Voir l'expérience</a></div>
-      <div class="tile"><svg viewBox="0 0 24 24"><path d="M19.4 13a7.5 7.5 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7 7 0 0 0-1.7-1L15 3h-4l-.4 2.9a7 7 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.5 7.5 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7 7 0 0 0 1.7 1L11 21h4l.4-2.9a7 7 0 0 0 1.7-1l2.5 1 2-3.5zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z"/></svg><h3>Projets</h3><p>Simulation ABAQUS, transmissibilité vibratoire, CFD-structure, conceptions CAO, robotique.</p><a class="btn" href="#projets">Voir les projets</a></div>
-      <div class="tile"><svg viewBox="0 0 24 24"><path d="m8 17-5-5 5-5 1.4 1.4L5.8 12l3.6 3.6zm8 0-1.4-1.4 3.6-3.6-3.6-3.6L16 7l5 5z"/></svg><h3>Compétences</h3><p>SolidWorks, CATIA V5, ABAQUS, ANSYS, MATLAB, Python, et compétences transversales.</p><a class="btn" href="#competences">Voir les compétences</a></div>
-    </div>
-  </section>
-
-  <section id="formation">
-    <h2 class="sh">Formation</h2>
+<section id="experience" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Parcours</div><h2>Expérience</h2></div></div>
     <div class="tl">
-      <div class="tl-item"><div class="when">2024 – 2027</div><div><h3>Diplôme d'ingénieur en Génie Mécanique</h3><div class="org">ENIT – École Nationale d'Ingénieurs de Tunis</div><ul><li>Mécanique, RDM, vibrations mécaniques, mécanique des fluides, conception mécanique.</li><li>Modules complémentaires : lean management, fiabilité et qualité industrielle, industrie 4.0, IA appliquée au génie mécanique, nanotechnologies, rentabilité des projets.</li></ul></div></div>
-      <div class="tl-item"><div class="when">2022 – 2024</div><div><h3>Cycle préparatoire Physique-Chimie</h3><div class="org">IPEIN – Institut Préparatoire aux Études d'Ingénieur de Nabeul</div></div></div>
+      <article class="xp">
+        <div><div class="when">2026 · 2 mois</div><div class="where">Stage ingénieur</div></div>
+        <div>
+          <h3>SAFRAN Electrical &amp; Power</h3>
+          <div class="role">Département Méthodes</div>
+          <ul>
+            <li>Conception sous CATIA V5 d'un outil de serrage à mâchoire dentée pour écrous moletés : analyse de l'existant (AMDEC, Ishikawa), dimensionnement et choix du matériau.</li>
+            <li>Validation du prototype en conditions réelles : couple reproductible, effort opérateur réduit, aucune détérioration du moletage.</li>
+            <li>Roadmap process du site sous Excel : grille multicritère basée sur TRS, FPY, MTBF et MTTR.</li>
+          </ul>
+          <div class="gal">
+            <button type="button" data-full="safran_ecrous.png"><img src="safran_ecrous.png" alt="Écrous moletés et outillage existant" loading="lazy"><span>Écrous et outillage existant</span></button>
+            <button type="button" data-full="safran_analyse.png"><img src="safran_analyse.png" alt="Analyse de l'existant" loading="lazy"><span>Analyse de l'existant</span></button>
+            <button type="button" data-full="safran_outil_catia.jpg"><img src="safran_outil_catia.jpg" alt="Outil de serrage conçu sous CATIA V5" loading="lazy"><span>Outil conçu sous CATIA V5</span></button>
+          </div>
+        </div>
+      </article>
+      <article class="xp">
+        <div><div class="when">2025 · 2 mois</div><div class="where">Stage ouvrier</div></div>
+        <div>
+          <h3>COFAT</h3>
+          <div class="role">Département Maintenance</div>
+          <ul>
+            <li>Analyse vibratoire du groupe moto-pompe d'une machine d'injection de polyuréthane (vibromètre portable, norme ISO 10816) : détection d'un désalignement probable et plan d'actions correctives.</li>
+            <li>Contrôle qualité et surveillance de la ligne de production.</li>
+          </ul>
+          <div class="gal">
+            <button type="button" data-full="cofat_motopompe.png"><img src="cofat_motopompe.png" alt="Groupe moto-pompe analysé" loading="lazy"><span>Groupe moto-pompe analysé</span></button>
+            <button type="button" data-full="cofat_vibrometre.png"><img src="cofat_vibrometre.png" alt="Vibromètre portable" loading="lazy"><span>Vibromètre portable</span></button>
+          </div>
+        </div>
+      </article>
+      <article class="xp">
+        <div><div class="when">2023 – aujourd'hui</div><div class="where">En parallèle des études</div></div>
+        <div>
+          <h3>Enseignement</h3>
+          <div class="role">VOILIVOILOU · LEADER LEARNING</div>
+          <ul>
+            <li>Professeure de français en ligne pour des apprenants anglophones.</li>
+            <li>Professeure de mathématiques (programme français) : préparation aux examens et suivi personnalisé.</li>
+          </ul>
+        </div>
+      </article>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="experience">
-    <h2 class="sh">Expérience</h2>
-    <div class="tl">
-      <div class="tl-item"><div class="when">2026 · 2 mois</div><div><h3>SAFRAN Electrical &amp; Power</h3><div class="org">Stage ingénieur, Département Méthodes</div><ul>
-        <li>Conception sous CATIA V5 d'un outil de serrage à mâchoire dentée pour écrous moletés : analyse de l'existant (AMDEC, Ishikawa), dimensionnement et choix du matériau.</li>
-        <li>Validation du prototype en conditions réelles : couple reproductible, effort opérateur réduit, aucune détérioration du moletage.</li>
-        <li>Roadmap process du site sous Excel : grille multicritère basée sur TRS, FPY, MTBF et MTTR.</li></ul><div class="gal"><figure><img src="safran_ecrous.png" alt="Écrous moletés et outillage existant" loading="lazy"><figcaption>Écrous moletés et outillage existant</figcaption></figure><figure><img src="safran_analyse.png" alt="Analyse de l'existant" loading="lazy"><figcaption>Analyse de l'existant</figcaption></figure><figure><img src="safran_outil_catia.jpg" alt="Outil de serrage conçu sous CATIA V5" loading="lazy"><figcaption>Outil de serrage conçu sous CATIA V5</figcaption></figure></div></div></div>
-      <div class="tl-item"><div class="when">2025 · 2 mois</div><div><h3>COFAT</h3><div class="org">Stage ouvrier, Département Maintenance</div><ul>
-        <li>Analyse vibratoire du groupe moto-pompe d'une machine d'injection de polyuréthane (vibromètre portable, norme ISO 10816) : détection d'un désalignement probable et plan d'actions correctives.</li>
-        <li>Contrôle qualité et surveillance de la ligne de production.</li></ul><div class="gal"><figure><img src="cofat_motopompe.png" alt="Groupe moto-pompe analysé" loading="lazy"><figcaption>Groupe moto-pompe analysé</figcaption></figure><figure><img src="cofat_vibrometre.png" alt="Vibromètre portable utilisé" loading="lazy"><figcaption>Vibromètre portable utilisé</figcaption></figure></div></div></div>
-      <div class="tl-item"><div class="when">2023 – Présent</div><div><h3>Enseignement</h3><div class="org">VOILIVOILOU · LEADER LEARNING</div><ul>
-        <li>Professeure de français en ligne pour des apprenants anglophones.</li>
-        <li>Professeure de mathématiques (programme français) : préparation aux examens et suivi personnalisé.</li></ul></div></div>
-    </div>
-  </section>
-
-  <section id="projets">
-    <h2 class="sh">Projets</h2>
+<section id="projets" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Réalisations</div><h2>Projets</h2></div><p>Cliquez sur une image pour l'agrandir. Les rapports complets sont disponibles en PDF.</p></div>
     <div class="projects">
-      <article class="card feat">
-        <div class="body">
-          <span class="yr">Projet phare · 2026</span>
-          <h3>Simulation numérique du pliage en U sous ABAQUS</h3>
-          <p>Pliage d'une tôle en aluminium A2024 (40 × 2 mm) : loi de Johnson-Cook, analyse Dynamic Explicit en deux étapes (pliage puis retour élastique), contacts avec frottement (μ = 0,1), symétrie et maillage de 0,5 mm. Cinq problèmes de modélisation identifiés et corrigés jusqu'au modèle validé.</p>
-          <div class="kpis"><div class="kpi"><b>994,9 MPa</b><span>σ VM initiale</span></div><div class="kpi"><b>≈ 710 MPa</b><span>σ VM validée</span></div><div class="kpi"><b>5</b><span>corrections</span></div></div>
-          <div class="gal">
-            <figure><img src="abq_support.png" alt="Esquisse du support (R5, R15)" loading="lazy"><figcaption>Géométrie du support</figcaption></figure>
-            <figure><img src="abq_poincon.png" alt="Esquisse du poinçon R13" loading="lazy"><figcaption>Géométrie du poinçon</figcaption></figure>
-            <figure><img src="abq_probleme.png" alt="Concentration de contraintes avant correction" loading="lazy"><figcaption>Avant correction</figcaption></figure>
-            <figure><img src="abq_final.png" alt="Résultat final validé, contraintes de Von Mises" loading="lazy"><figcaption>Modèle final validé</figcaption></figure>
+      <article class="proj wide">
+        <div class="split">
+          <button class="cover" type="button" data-full="abq_final.png"><img src="abq_final.png" alt="Résultat final validé du pliage en U sous ABAQUS"></button>
+          <div class="body">
+            <div class="meta"><span class="pill">Projet phare</span><span>Éléments finis · 2026</span></div>
+            <h3>Simulation numérique du pliage en U sous ABAQUS</h3>
+            <p>Pliage d'une tôle en aluminium A2024 (40 × 2 mm) avec la loi de Johnson-Cook, en analyse Dynamic Explicit sur deux étapes : pliage, puis retour élastique. Cinq problèmes de modélisation ont été identifiés et corrigés jusqu'au modèle validé.</p>
+            <div class="kpis"><div><b>994,9 MPa</b><span>contrainte initiale</span></div><div><b>≈ 710 MPa</b><span>contrainte validée</span></div><div><b>5</b><span>corrections</span></div></div>
+            <div class="gal">
+              <button type="button" data-full="abq_support.png"><img src="abq_support.png" alt="Géométrie du support" loading="lazy"><span>Support</span></button>
+              <button type="button" data-full="abq_poincon.png"><img src="abq_poincon.png" alt="Géométrie du poinçon" loading="lazy"><span>Poinçon</span></button>
+              <button type="button" data-full="abq_probleme.png"><img src="abq_probleme.png" alt="Avant correction" loading="lazy"><span>Avant correction</span></button>
+            </div>
+            <div class="tags"><span>ABAQUS</span><span>Johnson-Cook</span><span>Dynamic Explicit</span><span>Contact</span></div>
+            <div class="actions"><a class="btn btn-primary btn-sm" href="Rapport_ABAQUS_pliage_U.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>Rapport PDF</a></div>
           </div>
-          <div class="chips"><span>ABAQUS</span><span>Johnson-Cook</span><span>Dynamic Explicit</span></div>
-          <a class="btn" href="Rapport_ABAQUS_pliage_U.pdf" target="_blank" rel="noopener">Voir le rapport</a>
         </div>
       </article>
-      <article class="card feat">
-        <div class="body">
-          <span class="yr">Projet de fin d'année · 2026</span>
-          <h3>Étude de la transmissibilité vibratoire des groupes électrogènes domestiques</h3>
-          <p>Modélisation d'un groupe électrogène par un système masse-ressort-amortisseur, établissement des équations du mouvement, puis étude paramétrique de la raideur et de l'amortissement des supports sous MATLAB et Python pour recommander des solutions d'isolation vibratoire.</p>
-          <div class="gal">
-            <figure><img src="pfa_modelisation.png" alt="Passage du modèle réel au modèle physique" loading="lazy"><figcaption>Du réel au modèle physique</figcaption></figure>
-            <figure><img src="pfa_modele_2ddl.png" alt="Modèle masse-ressort-amortisseur" loading="lazy"><figcaption>Modèle masse-ressort-amortisseur</figcaption></figure>
-            <figure><img src="pfa_courbes.png" alt="Transmissibilité selon les paramètres" loading="lazy"><figcaption>Étude paramétrique</figcaption></figure>
-            <figure><img src="pfa_reponse.jpg" alt="Réponse en fréquence" loading="lazy"><figcaption>Réponse en fréquence</figcaption></figure>
-            <figure><img src="pfa_plots.png" alt="Plots antivibratoires" loading="lazy"><figcaption>Plots antivibratoires étudiés</figcaption></figure>
-            <figure><img src="pfa_groupe.png" alt="Groupe électrogène domestique" loading="lazy"><figcaption>Groupe électrogène étudié</figcaption></figure>
-          </div>
-          <div class="chips"><span>MATLAB</span><span>Python</span><span>Vibrations</span></div>
-          <a class="btn" href="Rapport_PFA_transmissibilite.pdf" target="_blank" rel="noopener">Voir le rapport</a>
-        </div>
-      </article>
-      <article class="card feat">
-        <div class="body">
-          <span class="yr">Bureau d'études · 2025</span>
-          <h3>Étude et conception d'un concasseur à mâchoires</h3>
-          <p>Analyse fonctionnelle, étude cinématique du mécanisme à excentrique, calcul des efforts de concassage, dimensionnement de l'arbre excentrique (sollicitations, moment fléchissant, diamètre minimal), choix du moteur et de la transmission par courroies, puis conception sous CATIA V5.</p>
-          <div class="gal">
-            <figure><img src="be_machoire.jpg" alt="Plaque de mâchoire" loading="lazy"><figcaption>Plaque de mâchoire</figcaption></figure>
-            <figure><img src="be_cinematique.jpg" alt="Étude cinématique" loading="lazy"><figcaption>Étude cinématique</figcaption></figure>
-            <figure><img src="be_deplacements.jpg" alt="Déplacements de la mâchoire mobile" loading="lazy"><figcaption>Déplacements de la mâchoire mobile</figcaption></figure>
-            <figure><img src="be_arbre_modele.jpg" alt="Modélisation de l'arbre" loading="lazy"><figcaption>Modélisation de l'arbre</figcaption></figure>
-            <figure><img src="be_sollicitations.jpg" alt="Diagrammes des sollicitations" loading="lazy"><figcaption>Diagrammes des sollicitations</figcaption></figure>
-          </div>
-          <div class="chips"><span>CATIA V5</span><span>Cinématique</span><span>RDM</span><span>Transmission</span></div>
-          <a class="btn" href="Rapport_BE_concasseur.pdf" target="_blank" rel="noopener">Voir le rapport</a>
-        </div>
-      </article>
-      <article class="card"><div class="body"><span class="yr">2026</span><h3>Simulation CFD-structurelle</h3><p>Couplage Fluent et Static Structural pour étudier la déflexion d'une plaque sous écoulement d'air.</p><div class="chips"><span>ANSYS Fluent</span><span>Static Structural</span></div></div></article>
-      <article class="card"><div class="body"><span class="yr">2026</span><h3>Pompe volumétrique à cinq palettes</h3><p>Conception d'une pompe à cinq palettes et rotor excentré.</p><div class="gal"><figure><img src="pompe_rotor.png" alt="Rotor à palettes" loading="lazy"><figcaption>Rotor à palettes</figcaption></figure><figure><img src="pompe_assemblage.png" alt="Assemblage de la pompe" loading="lazy"><figcaption>Assemblage de la pompe</figcaption></figure></div><div class="chips"><span>CATIA V5</span></div></div></article>
-      <article class="card"><div class="body"><span class="yr">2026</span><h3>Chariot à moteur à essence</h3><p>Conception, étude des efforts et dimensionnement du moteur.</p><div class="gal"><figure><img src="chariot.jpg" alt="Chariot conçu sous SolidWorks" loading="lazy"><figcaption>Chariot conçu sous SolidWorks</figcaption></figure></div><div class="chips"><span>SolidWorks</span><span>RDM</span></div></div></article>
-      <article class="card"><div class="body"><span class="yr">2025</span><h3>Solution de perçage d'un trou carré</h3><p>Mécanisme à engrenage excentrique et tringle de Reuleaux.</p><div class="gal"><figure><img src="percage_mecanisme.png" alt="Mécanisme de Reuleaux" loading="lazy"><figcaption>Mécanisme de Reuleaux</figcaption></figure><figure><img src="percage_assemblage.png" alt="Assemblage SolidWorks" loading="lazy"><figcaption>Assemblage SolidWorks</figcaption></figure></div><div class="chips"><span>SolidWorks</span></div></div></article>
-      <article class="card"><div class="body"><span class="yr">2025</span><h3>Drone de détection d'incendie</h3><p>Développement collaboratif avec le Club Robotique ENIT et le Croissant Rouge.</p><div class="chips"><span>Robotique</span><span>Prototypage</span></div></div></article>
-      <article class="card"><div class="body"><span class="yr">2024</span><h3>Robot suiveur de ligne</h3><p>Conception mécanique et programmation de la commande.</p><div class="chips"><span>CATIA V5</span><span>Arduino</span></div></div></article>
-    </div>
-  </section>
 
-  <section id="competences" style="border-bottom:0">
-    <h2 class="sh">Compétences</h2>
+      <article class="proj wide">
+        <div class="split">
+          <button class="cover" type="button" data-full="pfa_modelisation.png"><img src="pfa_modelisation.png" alt="Du modèle réel au modèle physique"></button>
+          <div class="body">
+            <div class="meta"><span class="pill">Projet de fin d'année</span><span>Vibrations · 2026</span></div>
+            <h3>Transmissibilité vibratoire des groupes électrogènes domestiques</h3>
+            <p>Modélisation d'un groupe électrogène par un système masse-ressort-amortisseur, équations du mouvement et étude paramétrique de la raideur et de l'amortissement des supports sous MATLAB et Python, pour recommander des solutions d'isolation vibratoire.</p>
+            <div class="gal">
+              <button type="button" data-full="pfa_modele_2ddl.png"><img src="pfa_modele_2ddl.png" alt="Modèle masse-ressort-amortisseur" loading="lazy"><span>Modèle physique</span></button>
+              <button type="button" data-full="pfa_courbes.png"><img src="pfa_courbes.png" alt="Étude paramétrique" loading="lazy"><span>Étude paramétrique</span></button>
+              <button type="button" data-full="pfa_reponse.jpg"><img src="pfa_reponse.jpg" alt="Réponse en fréquence" loading="lazy"><span>Réponse en fréquence</span></button>
+              <button type="button" data-full="pfa_plots.png"><img src="pfa_plots.png" alt="Plots antivibratoires" loading="lazy"><span>Plots antivibratoires</span></button>
+            </div>
+            <div class="tags"><span>MATLAB</span><span>Python</span><span>Dynamique</span><span>Isolation vibratoire</span></div>
+            <div class="actions"><a class="btn btn-primary btn-sm" href="Rapport_PFA_transmissibilite.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>Rapport PDF</a></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <button class="cover" type="button" data-full="pompe_assemblage.png"><img src="pompe_assemblage.png" alt="Assemblage de la pompe à palettes" loading="lazy"></button>
+        <div class="body">
+          <div class="meta"><span class="pill">CAO</span><span>2026</span></div>
+          <h3>Pompe volumétrique à cinq palettes</h3>
+          <p>Conception d'une pompe à cinq palettes et rotor excentré.</p>
+          <div class="gal"><button type="button" data-full="pompe_rotor.png"><img src="pompe_rotor.png" alt="Rotor à palettes" loading="lazy"><span>Rotor à palettes</span></button></div>
+          <div class="tags"><span>CATIA V5</span></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <button class="cover" type="button" data-full="percage_assemblage.png"><img src="percage_assemblage.png" alt="Assemblage du mécanisme de perçage" loading="lazy"></button>
+        <div class="body">
+          <div class="meta"><span class="pill">CAO</span><span>2025</span></div>
+          <h3>Solution de perçage d'un trou carré</h3>
+          <p>Mécanisme à engrenage excentrique et tringle de Reuleaux.</p>
+          <div class="gal"><button type="button" data-full="percage_mecanisme.png"><img src="percage_mecanisme.png" alt="Mécanisme de Reuleaux" loading="lazy"><span>Mécanisme de Reuleaux</span></button></div>
+          <div class="tags"><span>SolidWorks</span></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <button class="cover" type="button" data-full="chariot.jpg"><img src="chariot.jpg" alt="Chariot conçu sous SolidWorks" loading="lazy"></button>
+        <div class="body">
+          <div class="meta"><span class="pill">Conception</span><span>2026</span></div>
+          <h3>Chariot à moteur à essence</h3>
+          <p>Conception, étude des efforts et dimensionnement du moteur.</p>
+          <div class="tags"><span>SolidWorks</span><span>RDM</span></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="body">
+          <div class="meta"><span class="pill">Simulation</span><span>2026</span></div>
+          <h3>Simulation CFD-structurelle</h3>
+          <p>Couplage Fluent et Static Structural pour étudier la déflexion d'une plaque sous écoulement d'air.</p>
+          <div class="tags"><span>ANSYS Fluent</span><span>Static Structural</span></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="mini">
+      <article class="proj"><div class="body"><div class="meta"><span class="pill">Robotique</span><span>2025</span></div><h3>Drone de détection d'incendie</h3><p>Développement collaboratif avec le Club Robotique ENIT et le Croissant Rouge.</p></div></article>
+      <article class="proj"><div class="body"><div class="meta"><span class="pill">Robotique</span><span>2024</span></div><h3>Robot suiveur de ligne</h3><p>Conception mécanique sous CATIA V5 et programmation Arduino.</p></div></article>
+      <article class="proj"><div class="body"><div class="meta"><span class="pill">Programmation</span><span>2025</span></div><h3>Gestion des fichiers de paie</h3><p>Application de gestion développée en langage C.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="competences" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">Savoir-faire</div><h2>Compétences</h2></div></div>
     <div class="skills">
+      <div class="box"><h3>Logiciels</h3><div class="chips"><span>CATIA V5</span><span>SolidWorks</span><span>ABAQUS</span><span>ANSYS Workbench</span><span>MATLAB</span><span>Python</span><span>C</span><span>Arduino</span><span>Excel</span></div></div>
+      <div class="box"><h3>Domaines</h3><ul><li>Analyse vibratoire et dynamique des structures</li><li>Simulation par éléments finis et CFD</li><li>Conception mécanique et RDM</li><li>Programmation scientifique</li></ul></div>
+      <div class="box"><h3>Compléments</h3><ul><li>Lean management, fiabilité et qualité</li><li>Industrie 4.0 et IA appliquée au génie mécanique</li><li>Certifications : Croissant Rouge, Robotics, INJAZ</li><li>Travail en équipe, rigueur, adaptabilité</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="contact">
       <div>
-        <div class="sk"><span>SolidWorks</span><span class="t"><i style="width:85%"></i></span></div>
-        <div class="sk"><span>CATIA V5</span><span class="t"><i style="width:85%"></i></span></div>
-        <div class="sk"><span>ABAQUS</span><span class="t"><i style="width:75%"></i></span></div>
-        <div class="sk"><span>ANSYS Workbench</span><span class="t"><i style="width:75%"></i></span></div>
-        <div class="sk"><span>MATLAB</span><span class="t"><i style="width:80%"></i></span></div>
-        <div class="sk"><span>Python</span><span class="t"><i style="width:70%"></i></span></div>
-        <div class="sk"><span>C · Arduino · Excel</span><span class="t"><i style="width:65%"></i></span></div>
+        <div class="eyebrow">Contact</div>
+        <h2>Travaillons ensemble</h2>
+        <p style="margin:0 0 22px">Je recherche un stage de fin d'études de 6 mois à partir de février 2027. Je serai ravie d'échanger sur vos sujets.</p>
+        <div class="ctas" style="margin-top:0">
+          <a class="btn btn-light" href="https://www.linkedin.com/in/nagham-gani-0576173b5/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-outline-light" href="CV_Nagham_Gani.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+        </div>
       </div>
-      <div class="kv">
-        <div><h4>Domaines d'expertise</h4><p>Analyse vibratoire, dynamique des structures, mécanique des fluides, programmation scientifique, conception mécanique, CFD, robotique.</p></div>
-        <div><h4>Connaissances complémentaires</h4><p>Lean management, fiabilité et qualité industrielle, industrie 4.0, IA appliquée au génie mécanique, nanotechnologies, rentabilité des projets.</p></div>
-        <div><h4>Savoir-être</h4><p>Travail en équipe, communication, rigueur, adaptabilité.</p></div>
-        <div><h4>Certifications</h4><p>Disaster Management : Fires (Croissant Rouge) · Robotics : Line Follower and Basics · Company Programme (INJAZ).</p></div>
+      <div class="cl">
+        <div><div><small>Email</small><span class="v" id="mail">nagham.gani@etudiant-enit.utm.tn</span></div><button class="copy" type="button" data-copy="mail">Copier</button></div>
+        <div><div><small>Téléphone</small><span class="v" id="tel">+216 29 423 511</span></div><button class="copy" type="button" data-copy="tel">Copier</button></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 </main>
-</div>
 
+<footer>© 2026 Nagham Gani · Élève-ingénieure en Génie Mécanique, ENIT</footer>
 
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Image agrandie"><button type="button" id="lbclose">Fermer ✕</button><img id="lbimg" alt=""><p id="lbcap"></p></div>
+
+<script>
+(function(){
+  var lb=document.getElementById('lb'),im=document.getElementById('lbimg'),cap=document.getElementById('lbcap'),last=null;
+  document.querySelectorAll('[data-full]').forEach(function(b){b.addEventListener('click',function(){last=b;var i=b.querySelector('img');im.src=b.dataset.full;im.alt=i?i.alt:'';cap.textContent=i?i.alt:'';lb.hidden=false;document.getElementById('lbclose').focus()})});
+  function close(){lb.hidden=true;im.removeAttribute('src');if(last)last.focus()}
+  document.getElementById('lbclose').addEventListener('click',close);
+  lb.addEventListener('click',function(e){if(e.target===lb)close()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!lb.hidden)close()});
+  document.querySelectorAll('.copy').forEach(function(b){b.addEventListener('click',function(){var el=document.getElementById(b.dataset.copy);var ok=function(){b.textContent='Copié';setTimeout(function(){b.textContent='Copier'},1500)};try{navigator.clipboard.writeText(el.textContent).then(ok,function(){sel(el)})}catch(e){sel(el)}})});
+  function sel(el){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)}
+})();
+</script>
 
 </body>
 </html>
