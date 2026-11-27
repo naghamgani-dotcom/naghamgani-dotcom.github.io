@@ -234,6 +234,8 @@ footer{border-top:1px solid var(--line)}
 .cover{background:transparent!important}.cover img{background:transparent}.proj.wide .cover{padding:0}.proj.wide .cover img{width:100%;height:100%;max-width:none;max-height:none;object-fit:contain}.gal button{background:transparent!important}.gal img{background:transparent!important}
 
 .gal .more{display:none!important}.gal.open .more{display:flex!important}.more-btn{margin-top:12px;align-self:flex-start}
+
+.vid-sm{max-width:480px}.vid-sm video{max-height:270px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 
@@ -310,7 +312,7 @@ footer{border-top:1px solid var(--line)}
             
             <button type="button" data-full="safran_prototype_reel.png"><img src="safran_prototype_reel.png" alt="Prototype réalisé et validé" loading="lazy"><span>Prototype réalisé et validé</span></button>
           </div>
-          <figure class="vid"><video controls muted playsinline preload="metadata" src="video_safran.mp4"></video><figcaption>Vidéo du stage chez SAFRAN Electrical &amp; Power</figcaption></figure>
+          <figure class="vid vid-sm"><video controls muted playsinline preload="metadata" src="video_safran.mp4"></video><figcaption>Vidéo du stage chez SAFRAN Electrical &amp; Power</figcaption></figure>
           <div class="actions"><a class="btn btn-primary btn-sm" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=nagham.gani@etudiant-enit.utm.tn&amp;su=Demande%20du%20rapport%20de%20stage%20SAFRAN&amp;body=Bonjour%20Nagham%2C%0A%0AJe%20souhaiterais%20recevoir%20votre%20rapport%20de%20stage%20SAFRAN%20Electrical%20%26%20Power.%0A%0ACordialement%2C" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Demander le rapport PDF</a><span style="font-size:12.5px;color:var(--muted);align-self:center">Rapport confidentiel, envoyé sur demande par e-mail (<a href="mailto:nagham.gani@etudiant-enit.utm.tn?subject=Demande%20du%20rapport%20de%20stage%20SAFRAN">autre messagerie</a>)</span></div>
         </div>
       </article>
@@ -398,7 +400,14 @@ footer{border-top:1px solid var(--line)}
           <div class="meta"><span class="pill">CAO</span><span>2026</span></div>
           <h3>Pompe volumétrique à cinq palettes</h3>
           <p>Conception d'une pompe à cinq palettes et rotor excentré.</p>
-          <div class="gal"><button type="button" data-full="pompe_rotor.png"><img src="pompe_rotor.png" alt="Rotor à palettes" loading="lazy"><span>Rotor à palettes</span></button><button type="button" data-full="pompe_montee.jpg"><img src="pompe_montee.jpg" alt="Pompe assemblée sous CATIA V5" loading="lazy"><span>Pompe assemblée sous CATIA V5</span></button><button type="button" data-full="pompe_corps.jpg"><img src="pompe_corps.jpg" alt="Corps de la pompe" loading="lazy"><span>Corps de la pompe</span></button><button type="button" data-full="pompe_rotor_palettes.jpg"><img src="pompe_rotor_palettes.jpg" alt="Rotor et rainures des palettes" loading="lazy"><span>Rotor et rainures des palettes</span></button><button type="button" data-full="pompe_flasque.jpg"><img src="pompe_flasque.jpg" alt="Flasque avec lumières d'aspiration" loading="lazy"><span>Flasque avec lumières d'aspiration</span></button></div>
+          <div class="gal" id="pompe-gal">
+            <button type="button" data-full="pompe_montee.jpg"><img src="pompe_montee.jpg" alt="Pompe assemblée sous CATIA V5" loading="lazy"><span>Pompe assemblée sous CATIA V5</span></button>
+            <button type="button" data-full="pompe_rotor_palettes.jpg"><img src="pompe_rotor_palettes.jpg" alt="Rotor et rainures des palettes" loading="lazy"><span>Rotor et rainures des palettes</span></button>
+            <button type="button" data-full="pompe_flasque.jpg"><img src="pompe_flasque.jpg" alt="Flasque avec lumières d'aspiration" loading="lazy"><span>Flasque avec lumières d'aspiration</span></button>
+            <button type="button" class="more" data-full="pompe_rotor.png"><img src="pompe_rotor.png" alt="Rotor à palettes" loading="lazy"><span>Rotor à palettes</span></button>
+            <button type="button" class="more" data-full="pompe_corps.jpg"><img src="pompe_corps.jpg" alt="Corps de la pompe" loading="lazy"><span>Corps de la pompe</span></button>
+          </div>
+          <button type="button" class="btn btn-ghost btn-sm more-btn" aria-controls="pompe-gal" aria-expanded="false">Plus de photos (2)</button>
           <div class="tags"><span>CATIA V5</span></div>
         </div>
       </article>
@@ -409,7 +418,16 @@ footer{border-top:1px solid var(--line)}
           <div class="meta"><span class="pill">CAO</span><span>2025</span></div>
           <h3>Solution de perçage d'un trou carré</h3>
           <p>Mécanisme à engrenage excentrique et tringle de Reuleaux.</p>
-          <div class="gal"><button type="button" data-full="percage_mecanisme.png"><img src="percage_mecanisme.png" alt="Mécanisme de Reuleaux" loading="lazy"><span>Mécanisme de Reuleaux</span></button><button type="button" data-full="percage_trajectoire.png"><img src="percage_trajectoire.png" alt="Trajectoire du triangle de Reuleaux" loading="lazy"><span>Trajectoire du triangle de Reuleaux</span></button><button type="button" data-full="percage_ensemble.png"><img src="percage_ensemble.png" alt="Ensemble moteur et outil" loading="lazy"><span>Ensemble moteur et outil</span></button><button type="button" data-full="percage_liaisons.png"><img src="percage_liaisons.png" alt="Schéma cinématique et torseurs des liaisons" loading="lazy"><span>Schéma cinématique et torseurs des liaisons</span></button><button type="button" data-full="percage_moteur.png"><img src="percage_moteur.png" alt="Moteur et arbre sous SolidWorks" loading="lazy"><span>Moteur et arbre sous SolidWorks</span></button><button type="button" data-full="percage_roue.png"><img src="percage_roue.png" alt="Roue dentée" loading="lazy"><span>Roue dentée</span></button><button type="button" data-full="percage_foret_reuleaux.png"><img src="percage_foret_reuleaux.png" alt="Outil de coupe en triangle de Reuleaux" loading="lazy"><span>Outil de coupe en triangle de Reuleaux</span></button></div>
+          <div class="gal" id="percage-gal">
+            <button type="button" data-full="percage_mecanisme.png"><img src="percage_mecanisme.png" alt="Mécanisme de Reuleaux" loading="lazy"><span>Mécanisme de Reuleaux</span></button>
+            <button type="button" data-full="percage_trajectoire.png"><img src="percage_trajectoire.png" alt="Trajectoire du triangle de Reuleaux" loading="lazy"><span>Trajectoire du triangle de Reuleaux</span></button>
+            <button type="button" data-full="percage_foret_reuleaux.png"><img src="percage_foret_reuleaux.png" alt="Outil de coupe en triangle de Reuleaux" loading="lazy"><span>Outil de coupe en triangle de Reuleaux</span></button>
+            <button type="button" class="more" data-full="percage_ensemble.png"><img src="percage_ensemble.png" alt="Ensemble moteur et outil" loading="lazy"><span>Ensemble moteur et outil</span></button>
+            <button type="button" class="more" data-full="percage_liaisons.png"><img src="percage_liaisons.png" alt="Schéma cinématique et torseurs des liaisons" loading="lazy"><span>Schéma cinématique et torseurs des liaisons</span></button>
+            <button type="button" class="more" data-full="percage_moteur.png"><img src="percage_moteur.png" alt="Moteur et arbre sous SolidWorks" loading="lazy"><span>Moteur et arbre sous SolidWorks</span></button>
+            <button type="button" class="more" data-full="percage_roue.png"><img src="percage_roue.png" alt="Roue dentée" loading="lazy"><span>Roue dentée</span></button>
+          </div>
+          <button type="button" class="btn btn-ghost btn-sm more-btn" aria-controls="percage-gal" aria-expanded="false">Plus de photos (4)</button>
           <div class="tags"><span>SolidWorks</span></div>
           <div class="actions"><a class="btn btn-primary btn-sm" href="Rapport_percage_trou_carre.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>Rapport PDF</a></div>
         </div>
