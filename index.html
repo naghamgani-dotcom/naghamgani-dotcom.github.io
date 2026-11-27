@@ -236,6 +236,11 @@ footer{border-top:1px solid var(--line)}
 .gal .more{display:none!important}.gal.open .more{display:flex!important}.more-btn{margin-top:12px;align-self:flex-start}
 
 .vid-sm{max-width:480px}.vid-sm video{max-height:270px}
+
+@keyframes litPulse{0%{box-shadow:0 0 0 0 rgba(143,134,255,.0),0 0 0 rgba(91,79,232,0);border-color:rgba(143,134,255,.35)}30%{box-shadow:0 0 0 3px rgba(143,134,255,.55),0 0 42px rgba(91,79,232,.65);border-color:#8f86ff}100%{box-shadow:0 0 0 1px rgba(143,134,255,.35),0 0 24px rgba(91,79,232,.3);border-color:rgba(143,134,255,.5)}}
+.xp,.proj,.box,.facts,.contact{position:relative}.xp.lit,.proj.lit,.box.lit,.facts.lit,.contact.lit{animation:litPulse .9s ease-out forwards}
+.box:hover,.facts:hover{border-color:rgba(143,134,255,.4);box-shadow:0 0 28px rgba(91,79,232,.22)}
+@media (prefers-reduced-motion:reduce){.lit{animation:none!important;border-color:#8f86ff!important}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 
@@ -439,15 +444,16 @@ footer{border-top:1px solid var(--line)}
           <div class="meta"><span class="pill">Conception</span><span>2026</span></div>
           <h3>Chariot à moteur à essence</h3>
           <p>Conception, étude des efforts et dimensionnement du moteur.</p>
-          <div class="gal">
-            <button type="button" data-full="chariot_vue3d.png"><img src="chariot_vue3d.png" alt="Chariot complet sous SolidWorks" loading="lazy"><span>Chariot complet sous SolidWorks</span></button>
-            <button type="button" data-full="chariot_transmission.png"><img src="chariot_transmission.png" alt="Transmission par chaîne" loading="lazy"><span>Transmission par chaîne</span></button>
-            <button type="button" data-full="chariot_plan.png"><img src="chariot_plan.png" alt="Mise en plan" loading="lazy"><span>Mise en plan</span></button>
-            <button type="button" data-full="chariot_schema_cinematique.png"><img src="chariot_schema_cinematique.png" alt="Schéma cinématique du mécanisme" loading="lazy"><span>Schéma cinématique du mécanisme</span></button>
-            <button type="button" data-full="chariot_moteur_vues.png"><img src="chariot_moteur_vues.png" alt="Intégration du moteur (vues 3D)" loading="lazy"><span>Intégration du moteur (vues 3D)</span></button>
-            <button type="button" data-full="chariot_bras_serrage.png"><img src="chariot_bras_serrage.png" alt="Bras de serrage ouvert et fermé" loading="lazy"><span>Bras de serrage ouvert et fermé</span></button>
+          <div class="gal" id="chariot-gal">
             <button type="button" data-full="chariot_positions.png"><img src="chariot_positions.png" alt="Chariot complet en positions 1 et 2" loading="lazy"><span>Chariot complet en positions 1 et 2</span></button>
+            <button type="button" data-full="chariot_bras_serrage.png"><img src="chariot_bras_serrage.png" alt="Bras de serrage ouvert et fermé" loading="lazy"><span>Bras de serrage ouvert et fermé</span></button>
+            <button type="button" data-full="chariot_schema_cinematique.png"><img src="chariot_schema_cinematique.png" alt="Schéma cinématique du mécanisme" loading="lazy"><span>Schéma cinématique du mécanisme</span></button>
+            <button type="button" class="more" data-full="chariot_vue3d.png"><img src="chariot_vue3d.png" alt="Chariot complet sous SolidWorks" loading="lazy"><span>Chariot complet sous SolidWorks</span></button>
+            <button type="button" class="more" data-full="chariot_transmission.png"><img src="chariot_transmission.png" alt="Transmission par chaîne" loading="lazy"><span>Transmission par chaîne</span></button>
+            <button type="button" class="more" data-full="chariot_plan.png"><img src="chariot_plan.png" alt="Mise en plan" loading="lazy"><span>Mise en plan</span></button>
+            <button type="button" class="more" data-full="chariot_moteur_vues.png"><img src="chariot_moteur_vues.png" alt="Intégration du moteur (vues 3D)" loading="lazy"><span>Intégration du moteur (vues 3D)</span></button>
           </div>
+          <button type="button" class="btn btn-ghost btn-sm more-btn" aria-controls="chariot-gal" aria-expanded="false">Plus de photos (4)</button>
           <div class="tags"><span>SolidWorks</span><span>RDM</span></div>
           <div class="actions"><a class="btn btn-primary btn-sm" href="Rapport_BE_chariot.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>Rapport PDF</a></div>
         </div>
@@ -552,5 +558,5 @@ footer{border-top:1px solid var(--line)}
   }
 })();
 </script>
-<script>document.querySelectorAll(".more-btn").forEach(function(b){b.addEventListener("click",function(){var g=document.getElementById(b.getAttribute("aria-controls"));var o=g.classList.toggle("open");b.setAttribute("aria-expanded",o);b.textContent=o?"Moins de photos":"Plus de photos ("+g.querySelectorAll(".more").length+")";});});</script></body>
+<script>document.querySelectorAll(".more-btn").forEach(function(b){b.addEventListener("click",function(){var g=document.getElementById(b.getAttribute("aria-controls"));var o=g.classList.toggle("open");b.setAttribute("aria-expanded",o);b.textContent=o?"Moins de photos":"Plus de photos ("+g.querySelectorAll(".more").length+")";});});</script><script>document.querySelectorAll(".xp,.proj,.box,.facts,.contact").forEach(function(c){c.addEventListener("pointerdown",function(){c.classList.remove("lit");void c.offsetWidth;c.classList.add("lit");clearTimeout(c._lt);c._lt=setTimeout(function(){c.classList.remove("lit")},1800);});});</script></body>
 </html>
